@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+
+
+body {
+    background: #f4f7fc;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background: #0f172a;
+    padding: 20px;
+    color: white;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: #ccc;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: #ffcc00;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 999;
+}
+
+.main {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.topbar {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabs span {
+    margin-right: 10px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #e9edf5;
+    cursor: pointer;
+}
+
+.tabs span.active {
+    background: #2f4b7c;
+    color: white;
+}
+
+
+.order-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+}
+
+.badge {
+    border-radius: 20px;
+}
+
+.success { background: #28a745; }
+.pending { background: #ffc107; color:black; }
+.danger { background: #dc3545; }
+
+.toggle-btn {
+    display: none;
+}
+
+.timeline {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.timeline li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.timeline li::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #2f4b7c;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+
+.order-card {
+    cursor: pointer;
+    border-left: 4px solid transparent;
+}
+
+.order-card[data-status="completed"] {
+    border-left-color: #28a745;
+}
+
+.order-card[data-status="pending"] {
+    border-left-color: #ffc107;
+}
+
+.order-card[data-status="cancelled"] {
+    border-left-color: #dc3545;
+}
+
+@media (max-width: 768px) {
+
+    .sidebar { left: -250px; }
+    .sidebar.active { left: 0; }
+
+    .main { margin-left: 0; }
+
+    .toggle-btn { display: block; }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="sidebar" id="sidebar">
+    <h4>Dealer Panel</h4>
+    <a href="dealerdashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+    <a href="order.html"><i class="bi bi-box active"></i> Orders</a>
+    <a href="index.html"><i class="bi bi-house"></i> Back to home</a>
+    
+    <a href="#" onclick="logout()">Logout</a>
+</div>
+
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<div class="main">
+
+    <div class="topbar">
+        <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+        <h5>Orders Management</h5>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div class="tabs mt-3">
+        <span class="active">All</span>
+        <span>Completed</span>
+        <span>Pending</span>
+        <span>Cancelled</span>
+    </div>
+
+  <br>
+
+    <div class="order-card" data-status="completed"
+onclick="openOrder('ABC Press','A4 Sheets',5000,30000,'Completed')">
+
+    <h6>ABC Press</h6>
+    <p>A4 Sheets • 5000 Qty • ₹30,000</p>
+    <span class="badge success">Completed</span>
+
+</div>
+
+
+<div class="order-card" data-status="pending"
+onclick="openOrder('XYZ School','Notebook',3000,18000,'Pending')">
+
+    <h6>PQR School</h6>
+    <p>Notebook • 3000 Qty • ₹18,000</p>
+    <span class="badge pending">Pending</span>
+
+</div>
+<div class="order-card" data-status="completed"
+onclick="openOrder('Thanthi Press','A4 Sheets',5000,30000,'Completed')">
+
+    <h6>Thanthi Press</h6>
+    <p>A4 Sheets • 5000 Qty • ₹30,000</p>
+    <span class="badge success">Completed</span>
+
+</div>
+<div class="order-card" data-status="pending"
+onclick="openOrder('Malar School','Notebook',3000,18000,'Pending')">
+
+    <h6>Malar School</h6>
+    <p>Notebook • 3000 Qty • ₹18,000</p>
+    <span class="badge pending">Pending</span>
+
+</div>
+
+
+<div class="order-card" data-status="completed"
+onclick="openOrder('Sys Ltd','Notebook',300,1800,'completed')">
+
+    <h6>sys Ltd</h6>
+    <p>Notebook • 3000 Qty • ₹18,000</p>
+    <span class="badge success">Completed</span>
+
+</div>
+
+<div class="order-card" data-status="cancelled"
+onclick="openOrder('Packaging Ltd','Kraft Paper',8000,50000,'Cancelled')">
+
+    <h6>Packaging Ltd</h6>
+    <p>Kraft Paper • 8000 Qty • ₹50,000</p>
+    <span class="badge danger">Cancelled</span>
+
+</div>
+<div class="order-card" data-status="pending"
+onclick="openOrder('St josaph School','Notebook',3000,18000,'Pending')">
+
+    <h6>St josaph School</h6>
+    <p>Notebook • 3000 Qty • ₹18,000</p>
+    <span class="badge pending">Pending</span>
+
+</div>
+<div class="order-card" data-status="cancelled"
+onclick="openOrder('Paper indus','Kraft Paper',8000,50000,'Cancelled')">
+
+    <h6>Paper indus</h6>
+    <p>Kraft Paper • 8000 Qty • ₹50,000</p>
+    <span class="badge danger">Cancelled</span>
+
+</div>
+<div class="order-card" data-status="completed"
+onclick="openOrder('ThinamalarPress','A4 Sheets',5000,30000,'Completed')">
+
+    <h6>Thinamalar Press</h6>
+    <p>A4 Sheets • 5000 Qty • ₹30,000</p>
+    <span class="badge success">Completed</span>
+
+</div>
+<div class="order-card" data-status="cancelled"
+onclick="openOrder('Brokerage Ltd','Kraft Paper',8000,50000,'Cancelled')">
+
+    <h6>Brokerage Ltd</h6>
+    <p>Kraft Paper • 8000 Qty • ₹50,000</p>
+    <span class="badge danger">Cancelled</span>
+
+</div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleSidebar(){
+    const s = document.getElementById("sidebar");
+    const o = document.getElementById("overlay");
+
+    s.classList.toggle("active");
+    o.style.display = s.classList.contains("active") ? "block" : "none";
+}
+
+function closeSidebar(){
+    document.getElementById("sidebar").classList.remove("active");
+    document.getElementById("overlay").style.display = "none";
+}
+
+</script>
+<script>
+
+const tabs = document.querySelectorAll(".tabs span");
+const cards = document.querySelectorAll(".order-card");
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+
+        const filter = tab.innerText.toLowerCase();
+
+        cards.forEach(card => {
+            if(filter === "all"){
+                card.style.display = "block";
+            } else {
+                if(card.dataset.status === filter){
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        });
+
+    });
+});
+
+
+function openOrder(client, product, qty, price, status){
+    document.getElementById("modalBody").innerHTML = `
+        <h5>${client}</h5>
+        <p><b>Product:</b> ${product}</p>
+        <p><b>Quantity:</b> ${qty}</p>
+        <p><b>Amount:</b> ₹${price}</p>
+        <p><b>Status:</b> ${status}</p>
+
+        <hr>
+
+        <h6>Order Timeline</h6>
+        <ul class="timeline">
+            <li>Order Placed</li>
+            <li>Supplier Confirmed</li>
+            <li>Dispatch Initiated</li>
+            <li>Out for Delivery</li>
+        </ul>
+    `;
+
+    new bootstrap.Modal(document.getElementById('orderModal')).show();
+}
+
+</script>
+
+</body>
+</html>

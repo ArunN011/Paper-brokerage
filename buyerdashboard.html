@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buyer Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body,html{
+    overflow-x: hidden;
+}
+body {
+    margin:0;
+    font-family:'Segoe UI';
+    background:#f4f7fc;
+}
+
+.sidebar {
+    position:fixed;
+    width:260px;
+    height:100%;
+    background:#0f172a;
+    padding:20px;
+    color:white;
+    transition:.3s;
+    z-index:1000;
+}
+
+.sidebar h4 {margin-bottom:25px;}
+
+.sidebar a {
+    display:block;
+    padding:12px;
+    color:#cbd5e1;
+    margin-bottom:10px;
+    border-radius:8px;
+    text-decoration:none;
+}
+
+.sidebar a:hover {
+    background:#1e293b;
+    color:#ffcc00;
+}
+
+#overlay {
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    display:none;
+    z-index:999;
+}
+
+.main {
+    margin-left:260px;
+    padding:20px;
+}
+
+.topbar {
+    background:white;
+    padding:15px 20px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.kpi {
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+}
+
+.kpi:hover {
+    transform:translateY(-6px);
+}
+
+.kpi h4 {color:#2f4b7c;}
+
+.table-box {
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-top:20px;
+}
+
+.table tbody tr:hover {
+    background:#eef3ff;
+}
+
+
+.badge-success {background:#28a745;}
+.badge-warning {background:#ffc107; color:black;}
+.badge-danger {background:#dc3545;}
+
+
+.timeline {
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+}
+
+.step {
+    text-align:center;
+    flex:1;
+}
+
+.circle {
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#ddd;
+    margin:auto;
+}
+
+.active .circle {
+    background:#28a745;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+.delayed .circle {
+    background: #dc3545;
+    animation: blink 1s infinite;
+}
+.processing .circle {
+    background: yellow;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+
+.supplier-card {
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.supplier-card:hover {
+    transform:scale(1.03);
+}
+
+
+.rfq input {
+    margin-bottom:10px;
+}
+
+
+.toggle-btn {display:none;font-size:22px;}
+
+@media(max-width:768px){
+    .sidebar{left:-260px;}
+    .sidebar.active{left:0;}
+    .main{margin-left:0;}
+    .toggle-btn{display:block;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar" id="sidebar">
+    <h4>Buyer Panel</h4>
+    <a href="buyerdashboard.html">Dashboard</a>
+    <a href="orderbuyer.html">Orders</a>
+    <a href="index.html">Back to home</a>
+    
+    <a href="#" onclick="logout()">Logout</a>
+</div>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+
+<div class="main">
+
+
+<div class="topbar">
+    <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+    <h5 id="welcome"></h5>
+    <i class="bi bi-bell"></i>
+</div>
+
+
+<div class="row mt-4 g-3">
+<div class="col-md-3 col-6"><div class="kpi"><h4>₹4.5L</h4><p>Total Spend</p></div></div>
+<div class="col-md-3 col-6"><div class="kpi"><h4>120</h4><p>Orders</p></div></div>
+<div class="col-md-3 col-6"><div class="kpi"><h4 class="text-warning">18</h4><p>Pending</p></div></div>
+<div class="col-md-3 col-6"><div class="kpi"><h4 class="text-danger">6</h4><p>Delayed</p></div></div>
+</div>
+
+<div class="table-box">
+<input class="form-control mb-3" placeholder="Search orders..." onkeyup="searchTable(this)">
+<table class="table">
+<thead><tr><th>ID</th><th>Product</th><th>Qty</th><th>Status</th><th>Action</th></tr></thead>
+<tbody id="orders">
+<tr><td>#101</td><td>A4 Paper</td><td>5000</td><td><span class="badge badge-success">Completed</span></td><td><button class="btn btn-sm btn-primary" onclick="track('completed')">Track</button></td></tr>
+<tr><td>#102</td><td>Kraft</td><td>8000</td><td><span class="badge badge-warning">Processing</span></td><td><button class="btn btn-sm btn-primary" onclick="track('processing')">Track</button></td></tr>
+<tr><td>#103</td><td>Notebook</td><td>3000</td><td><span class="badge badge-danger">Delayed</span></td><td><button class="btn btn-sm btn-primary" onclick="track('delayed')">Track</button></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="table-box" id="trackBox" style="display:none;">
+<h5>Order Tracking</h5>
+<div class="timeline">
+<div class="step active"><div class="circle"></div><p>Placed</p></div>
+<div class="step active"><div class="circle"></div><p>Confirmed</p></div>
+<div class="step"><div class="circle"></div><p>Dispatch</p></div>
+<div class="step"><div class="circle"></div><p>Delivered</p></div>
+</div>
+</div>
+
+<div class="row mt-4 g-3">
+<div class="col-md-4"><div class="supplier-card">ABC Mills ⭐4.8<br>₹25/kg</div></div>
+<div class="col-md-4"><div class="supplier-card">XYZ Traders ⭐4.5<br>₹24/kg</div></div>
+<div class="col-md-4"><div class="supplier-card">South Papers ⭐4.7<br>₹26/kg</div></div>
+</div>
+
+
+<div class="table-box mt-4 rfq">
+<h5>Request Quote</h5>
+<form action="error.html">
+<input class="form-control" placeholder="Paper Type" required>
+<input class="form-control" type="number" placeholder="Quantity"required>
+<button class="btn btn-warning w-100" type="submit">Send RFQ</button>
+</form>
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("welcome").innerText =
+"Welcome " + (localStorage.getItem("userEmail") || "Buyer");
+
+// SIDEBAR
+function toggleSidebar(){
+let s=document.getElementById("sidebar");
+let o=document.getElementById("overlay");
+s.classList.toggle("active");
+o.style.display=s.classList.contains("active")?"block":"none";
+}
+
+function closeSidebar(){
+document.getElementById("sidebar").classList.remove("active");
+document.getElementById("overlay").style.display="none";
+}
+
+function searchTable(input){
+let val=input.value.toLowerCase();
+document.querySelectorAll("#orders tr").forEach(tr=>{
+tr.style.display=tr.innerText.toLowerCase().includes(val)?"":"none";
+});
+}
+
+
+function track(status){
+
+    let stepsHTML = "";
+
+    if(status === "completed"){
+        stepsHTML = `
+        <div class="step active"><div class="circle"></div><p>Placed</p></div>
+        <div class="step active"><div class="circle"></div><p>Confirmed</p></div>
+        <div class="step active"><div class="circle"></div><p>Dispatched</p></div>
+        <div class="step active"><div class="circle"></div><p>Delivered</p></div>
+        `;
+    }
+
+    else if(status === "processing"){
+        stepsHTML = `
+        <div class="step active"><div class="circle"></div><p>Placed</p></div>
+        <div class="step active"><div class="circle"></div><p>Confirmed</p></div>
+        <div class="step processing"><div class="circle"></div><p>Dispatched</p></div>
+        <div class="step"><div class="circle"></div><p>Delivered</p></div>
+        `;
+    }
+
+    else if(status === "delayed"){
+        stepsHTML = `
+        <div class="step active"><div class="circle"></div><p>Placed</p></div>
+        <div class="step active"><div class="circle"></div><p>Confirmed</p></div>
+        <div class="step delayed"><div class="circle danger"></div><p>Delayed</p></div>
+        <div class="step"><div class="circle"></div><p>Pending</p></div>
+        `;
+    }
+
+    document.getElementById("trackBox").innerHTML = `
+        <h5>Order Tracking</h5>
+        <div class="timeline">
+            ${stepsHTML}
+        </div>
+    `;
+
+    document.getElementById("trackBox").style.display = "block";
+}
+
+function logout(){
+localStorage.clear();
+window.location.href="index.html";
+}
+
+</script>
+
+</body>
+</html>

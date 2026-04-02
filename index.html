@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title> Stackly ||Paper Brokerage</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+  <div class="container">
+
+  <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+  <img src="Adobe Express - file.png" alt="Logo" class="logo-img">
+  
+</a>
+
+   
+    <button class="navbar-toggler" type="button" onclick="toggleMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html"><i class="bi bi-house-door"></i> Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="service.html"><i class="bi bi-gear"></i> Our Services</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html"><i class="bi bi-journal-text"></i> Blog</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html"><i class="bi bi-envelope"></i> Contact</a>
+        </li>
+
+        <li class="nav-item dropdown ms-lg-3">
+          <a class="nav-link dropdown-toggle profile-icon" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle fs-4"></i>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end custom-dropdown">
+
+            <li>
+              <a class="dropdown-item" href="login.html">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item" href="register.html">
+                <i class="bi bi-person-plus"></i> Register
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero">
+
+<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+
+       
+        <div class="carousel-item active">
+            <img src="paper2.webp" class="d-block w-100 hero-img">
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <h1>Reliable Paper Brokerage Solutions</h1>
+                <p>Connecting bulk buyers with trusted paper suppliers across India.</p>
+                <a href="error.html" class="btn btn-warning me-2">Get Quote</a>
+                <a href="error.html" class="btn btn-outline-light">Explore Services</a>
+            </div>
+        </div>
+
+       
+        <div class="carousel-item">
+            <img src="slider2.webp" class="d-block w-100 hero-img">
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <h1>Bulk Paper Deals Made Simple</h1>
+                <p>Compare prices, negotiate, and finalize deals in one place.</p>
+                <a href="error.html" class="btn btn-warning me-2">View Products</a>
+                <a href="error.html" class="btn btn-outline-light">Contact Us</a>
+            </div>
+        </div>
+
+        
+        <div class="carousel-item">
+            <img src="paper.webp" class="d-block w-100 hero-img">
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <h1>Trusted Network of Suppliers</h1>
+                <p>Work with verified vendors for quality and consistency.</p>
+                <a href="error.html" class="btn btn-warning me-2">Join Now</a>
+                <a href="error.html" class="btn btn-outline-light">Learn More</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+<section class="services py-5">
+  <div class="container text-center">
+
+    <h2 class="section-title1">Our Services</h2>
+    <p class="section-subtitle">End-to-end paper brokerage solutions for businesses</p>
+
+    <div class="row mt-4">
+
+      <div class="col-md-3">
+        <div class="service-card">
+          <i class="bi bi-box-seam"></i>
+          <h5>Bulk Supply</h5>
+          <p>Reliable sourcing of paper products in large quantities.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="service-card">
+        <i class="bi bi-briefcase"></i>
+          <h5>Brokerage Deals</h5>
+          <p>Connect buyers and sellers with best pricing deals.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="service-card">
+          <i class="bi bi-bar-chart"></i>
+          <h5>Price Analysis</h5>
+          <p>Compare market prices and choose the best option.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="service-card">
+          <i class="bi bi-truck"></i>
+          <h5>Logistics</h5>
+          <p>End-to-end delivery support for your business needs.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="why-us">
+
+<div class="container">
+
+  <h2 class="text-center section-title reveal">Why Choose Us</h2>
+  <p class="text-center section-subtitle reveal">Trusted by businesses across the paper industry</p>
+
+  <div class="row mt-5">
+
+    
+    <div class="col-md-4">
+      <div class="why-card reveal tilt">
+        <h3 class="counter" data-target="500">0</h3>
+        <p>Active Clients</p>
+      </div>
+    </div>
+
+    
+    <div class="col-md-4">
+      <div class="why-card reveal tilt">
+        <h3 class="counter" data-target="1200">0</h3>
+        <p>Deals Completed</p>
+      </div>
+    </div>
+
+   
+    <div class="col-md-4">
+      <div class="why-card reveal tilt">
+        <h3 class="counter" data-target="50">0</h3>
+        <p>Trusted Suppliers</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+<section class="process-section">
+
+  <div class="container">
+
+    <h2 class="text-center section-title">How It Works</h2>
+    <p class="text-center section-subtitle">Simple steps to complete your paper deals</p>
+
+    <div class="process-container">
+
+      <div class="process-step">
+        <div class="circle">1</div>
+        <h5>Post Require</h5>
+        <p>Tell us your paper needs and quantity.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="circle">2</div>
+        <h5>Get Quotes</h5>
+        <p>Suppliers send competitive pricing.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="circle">3</div>
+        <h5>Compare</h5>
+        <p>Analyze price and quality options.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="circle">4</div>
+        <h5>Close Deal</h5>
+        <p>Finalize and proceed with delivery.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="testimonial-section">
+
+  <h2 class="text-center section-title">What Our Clients Say</h2>
+
+  <div class="testimonial-container">
+
+    <div class="testimonial-track">
+
+     
+      <div class="testimonial-card">
+        <p>"Very smooth brokerage process. Got best price!"</p>
+        <h6>- Rajesh, Printing Press</h6>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"Trusted suppliers and fast delivery support."</p>
+        <h6>- Kumar, Stationery Dealer</h6>
+      </div>
+
+  
+      <div class="testimonial-card">
+        <p>"Saved cost and time. Highly recommended."</p>
+        <h6>- Arun, School Admin</h6>
+      </div>
+
+   
+      <div class="testimonial-card">
+        <p>"Very smooth brokerage process. Got best price!"</p>
+        <h6>- Rajesh, Printing Press</h6>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"Trusted suppliers and fast delivery support."</p>
+        <h6>- Kumar, Stationery Dealer</h6>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section class="cta-section">
+
+  <div class="cta-container">
+
+    <h2>Get Instant Paper Quote</h2>
+    <p>Submit your requirement and receive the best deal from verified suppliers.</p>
+
+    <form class="cta-form" action="error.html">
+
+      <input type="text" placeholder="Your Name" required>
+      <input type="text" placeholder="Paper Type (A4, Craft...)" required>
+      <input type="number" placeholder="Quantity (in units)" required>
+
+      <button type="submit">Get Quote</button>
+
+    </form>
+
+  </div>
+
+</section>
+<footer class="footer">
+
+  <div class="container">
+
+    <div class="row">
+
+      
+      <div class="col-lg-4 col-md-6 footer-box">
+        <a href="error.html">
+          <img src="Adobe Express - file.png" class="footer-logo">
+        </a>
+        <p>
+          We connect paper buyers and suppliers across India with transparent pricing,
+          reliable logistics, and trusted partnerships.
+        </p>
+
+        <div class="social-icons">
+          <a href="error.html"><i class="bi bi-facebook"></i></a>
+          <a href="error.html"><i class="bi bi-instagram"></i></a>
+          <a href="error.html"><i class="bi bi-linkedin"></i></a>
+          <a href="error.html"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6 footer-box">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="error.html">Home</a></li>
+          <li><a href="error.html">Our Services</a></li>
+          <li><a href="error.html">Blog</a></li>
+          <li><a href="error.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-md-6 footer-box">
+        <h5>Our Services</h5>
+        <ul>
+          <li><a href="error.html">Bulk Paper Supply</a></li>
+          <li><a href="error.html">Brokerage Deals</a></li>
+          <li><a href="error.html">Price Analysis</a></li>
+          <li><a href="error.html">Logistics Support</a></li>
+        </ul>
+      </div>
+
+     
+      <div class="col-lg-3 col-md-6 footer-box">
+        <h5>Contact Us</h5>
+        <p><i class="bi bi-geo-alt"></i> Salem, Tamil Nadu, India</p>
+        <p><i class="bi bi-telephone"></i> +91 98765 43210</p>
+        <p><i class="bi bi-envelope"></i> support@paperbroker.com</p>
+        <p><i class="bi bi-clock"></i> Mon - Sat: 9AM - 6PM</p>
+      </div>
+
+    </div>
+
+  </div>
+
+ 
+  <div class="footer-bottom">
+    <p>&copy; 2026 Paper Brokerage | Designed for real-world business use</p>
+  </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function toggleMenu() {
+  let menu = document.getElementById("navbarMenu");
+
+  if (menu.classList.contains("show")) {
+    menu.classList.remove("show");
+  } else {
+    menu.classList.add("show");
+  }
+}
+</script>
+<script>
+const myCarousel = document.querySelector('#heroCarousel');
+
+const carousel = new bootstrap.Carousel(myCarousel, {
+    interval: 3000,  
+    ride: 'carousel',
+    pause: false,     
+});
+</script>
+<script>
+
+window.addEventListener("scroll", function() {
+    document.querySelectorAll(".reveal").forEach(el => {
+        let top = el.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100){
+            el.classList.add("active");
+        }
+    });
+});
+
+const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+    counter.innerText = "0";
+
+    const update = () => {
+        const target = +counter.getAttribute("data-target");
+        const current = +counter.innerText;
+
+        const increment = target / 100;
+
+        if(current < target){
+            counter.innerText = Math.ceil(current + increment);
+            setTimeout(update, 20);
+        } else {
+            counter.innerText = target + "+";
+        }
+    };
+
+   
+    const observer = new IntersectionObserver(entries => {
+        if(entries[0].isIntersecting){
+            update();
+        }
+    });
+
+    observer.observe(counter);
+});
+
+document.querySelectorAll(".tilt").forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+        let rect = card.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+
+        let rotateX = -(y / rect.height - 0.5) * 20;
+        let rotateY = (x / rect.width - 0.5) * 20;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0) rotateY(0)";
+    });
+});
+
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+document.querySelectorAll(".process-step").forEach(el => {
+    observer.observe(el);
+});
+document.querySelector(".cta-form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const btn = this.querySelector("button");
+
+    btn.innerText = "Processing...";
+    btn.style.background = "#4CAF50";
+
+    setTimeout(() => {
+        btn.innerText = "Quote Requested ✓";
+    }, 1500);
+});
+
+
+
+
+</script>
+
+</body>
+</html>

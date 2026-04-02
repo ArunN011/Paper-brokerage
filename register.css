@@ -1,0 +1,52 @@
+
+.register-wrapper {
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2f4b7c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.register-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box i {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.signup-btn {
+    background: #2f4b7c;
+    color: white;
+    font-weight: 600;
+}
+
+.signup-btn:hover {
+    background: #ffcc00;
+    color: black;
+}
+
+.back-home {
+    margin-top: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+    .register-card {
+        width: 90%;
+    }
+}
